@@ -17,6 +17,25 @@
 # Mono auto generated files
 mono_crash.*
 
+# To ignore the folder with NuGet
+packages/
+packages/
+
+
+*.nuget.props
+
+*.nuget.targets
+
+# To ignore the build results and cashe VS
+
+.vs/
+
+bin/
+
+obj/
+
+*.user
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

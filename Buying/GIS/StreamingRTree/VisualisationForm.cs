@@ -21,15 +21,15 @@ namespace Buying.GIS.StreamingRTree
 {
     internal partial class VisualisationForm : Form
     {
-        private RectangleF _queryAABB = new RectangleF(100, 100, 100, 100);
+        private RectangleF _queryAABB = new RectangleF(5, 5, 10, 10);
         private List<StoreItem> _retailChains = new List<StoreItem>();
 
         // Constants and rendering parameters
         private const float VisualStoreRadius = 6f;
         private const float SpatialIndexBoxSize = 15f;
         private const int GridStepPixels = 100;
-        private const int MinQuerySize = 40;
-        private const float ScrollDelta = 15f;
+        private const int MinQuerySize = 12;
+        private const float ScrollDelta = 10f;
         private const int MaxDisplayedHits = 34;
 
         public VisualisationForm(List<StoreItem> retailList = null)
