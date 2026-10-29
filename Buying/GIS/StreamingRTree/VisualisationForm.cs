@@ -133,6 +133,8 @@ namespace Buying.GIS.StreamingRTree
         // Panel of debugging and results
         private void PanelShowResults(List<StoreItem> matchedStores, int totalHitsCount, Graphics g)
         {
+            MakePanelBackgroundForResultOutput(matchedStores, totalHitsCount, g);
+
             using (Font titleFont = new Font("Consolas", 12, FontStyle.Bold))
             using (Font textFont = new Font("Consolas", 10, FontStyle.Regular))
             {
@@ -145,6 +147,28 @@ namespace Buying.GIS.StreamingRTree
                     g.DrawString($"> {store.Name}", textFont, Brushes.DarkRed, 30, offset);
                     offset += 20;
                 }
+            }
+        }
+
+        private void MakePanelBackgroundForResultOutput(List<StoreItem> matchedStores, int totalHitsCount, Graphics g)
+        {
+            int maxDisplayed = Math.Min(matchedStores.Count, MaxDisplayedHits);
+
+            // Dynamic calculation of substrate dimensions
+            int panelWidth = 365;
+            int titleHeight = 75; // Top margin before the first line of a list
+            int itemHeight = 20;  // Height of a single line
+            int paddingBottom = 20; // Bottom margin for aesthetic appeal
+
+            int panelHeight = titleHeight + (maxDisplayed * itemHeight) + paddingBottom;
+
+            // draw the background layer itself (the layer between the map and the text)
+            using (Brush panelBackground = new SolidBrush(Color.FromArgb(252, SystemColors.Window))) // 240 - slight transparency
+            using (Pen panelBorder = new Pen(Color.LightGray, 1))
+            {
+                // Draw the background for the underlay in the top-left corner (coordinates 10, 10)
+                g.FillRectangle(panelBackground, 10, 10, panelWidth, panelHeight);
+                g.DrawRectangle(panelBorder, 10, 10, panelWidth, panelHeight);
             }
         }
 
